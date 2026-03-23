@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, LoginForm
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 # ------------------------------------------- Sign Up View For User Registration -------------------------------------------
@@ -10,7 +14,7 @@ def signup_view(request):
         if signup_form.is_valid():
             user = signup_form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('app_users:index')
     else:
         signup_form = CustomUserCreationForm()
     return render(request, 'signup.html', {'signup_form': signup_form})
@@ -19,5 +23,23 @@ def signup_view(request):
 
 
 # ------------------------------------------- Sign In View For User Registration -------------------------------------------
-def index(request):
-    return render(request, 'index.html')
+def login_view(request):
+    login_form = LoginForm()
+
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            email = login_form.cleaned_data['email']
+            password = login_form.cleaned_data['password']
+
+            try:
+                user = User.objects.get(email=email)
+                if user.check_password(password):
+                    login(request, user)
+                    return redirect('app_users:index')  # change if needed
+                else:
+                    login_form.add_error(None, "Invalid password")
+            except User.DoesNotExist:
+                login_form.add_error(None, "User with this email does not exist")
+
+    return render(request, 'index.html', {'login_form': login_form})
