@@ -23,6 +23,7 @@ def signup_view(request):
 
 
 # ------------------------------------------- Sign In View For User Registration -------------------------------------------
+
 def login_view(request):
     login_form = LoginForm()
 
@@ -34,11 +35,21 @@ def login_view(request):
 
             try:
                 user = User.objects.get(email=email)
+
                 if user.check_password(password):
                     login(request, user)
-                    return redirect('app_users:index')  # change if needed
+
+                    # 🔥 Role-based redirect
+                    if user.user_type == 'freelancer':
+                        return redirect('app_main:freelancer_index')
+                    elif user.user_type == 'company':
+                        return redirect('app_main:company_index')
+                    else:
+                        return redirect('app_users:signup')
+
                 else:
                     login_form.add_error(None, "Invalid password")
+
             except User.DoesNotExist:
                 login_form.add_error(None, "User with this email does not exist")
 
