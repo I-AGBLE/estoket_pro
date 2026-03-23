@@ -3,15 +3,20 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
 
+
 class CustomUserCreationForm(UserCreationForm):
+    username = forms.CharField(required=True, label="Username")  # added field
     about = forms.CharField(
-        required=False, widget=forms.Textarea(attrs={"rows": 3}), label="About You"
+        required=False, 
+        widget=forms.Textarea(attrs={"rows": 3}), 
+        label="About You"
     )
     avatar = forms.ImageField(required=False, label="Profile Image")
 
     class Meta:
         model = CustomUser
         fields = (
+            "username",        # included username
             "first_name",
             "last_name",
             "email",
@@ -23,6 +28,7 @@ class CustomUserCreationForm(UserCreationForm):
         )
 
         labels = {
+            "username": "Username",
             "first_name": "First Name",
             "last_name": "Last Name",
             "email": "Email",
@@ -30,7 +36,6 @@ class CustomUserCreationForm(UserCreationForm):
             "password1": "Password",
             "password2": "Confirm Password",
         }
-
 
 
 class LoginForm(forms.Form):

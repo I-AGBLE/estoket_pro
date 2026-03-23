@@ -14,12 +14,7 @@ class CustomUser(AbstractUser):
     about = models.TextField(blank=True, null=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
 
-    def full_name(self):
-        return f"{self.first_name} {self.last_name}"
-    
-    full_name.short_description = "Full Name"
-
-
+ 
 
 
 
