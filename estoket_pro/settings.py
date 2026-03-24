@@ -46,7 +46,7 @@ ROOT_URLCONF = "estoket_pro.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -109,7 +109,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',   # tells Django where to find your static files
+    BASE_DIR / "static",  # tells Django where to find your static files
 ]
 
 # Default primary key field type
@@ -118,9 +118,12 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Register User Model For Authentication
-AUTH_USER_MODEL = 'app_users.CustomUser'
+AUTH_USER_MODEL = "app_users.CustomUser"
 
 
-# Media Files 
-MEDIA_URL = '/media/'                  # URL prefix for media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # actual folder path
+# Media Files
+MEDIA_URL = "/media/"  # URL prefix for media
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")  # actual folder path
+
+# @login_required action
+LOGIN_URL = 'app_users:index'

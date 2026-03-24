@@ -39,7 +39,7 @@ def login_view(request):
                 if user.check_password(password):
                     login(request, user)
 
-                    # 🔥 Role-based redirect
+                    # Role-based redirect
                     if user.user_type == 'freelancer':
                         return redirect('app_main:freelancer_index')
                     elif user.user_type == 'company':

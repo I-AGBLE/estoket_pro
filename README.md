@@ -4,5 +4,8 @@ TODO: Add constraint to check also whether a user belongs to a user_type before 
 For instance:
     @login_required && if user_type == 'freelancer'
 
-james@doe.com
+james@doe.com === freelancer
 james12345
+
+james@gunner.com === company
+james@12345
