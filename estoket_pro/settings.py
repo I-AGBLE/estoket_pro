@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "app_users",
     "app_main",
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")  # actual folder path
 
 # @login_required action
 LOGIN_URL = 'app_users:index'
+
+
+# CKEditor upload path
+CKEDITOR_UPLOAD_PATH = "uploads/ckeditor/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ['Image', 'Table'],
+            ['Undo', 'Redo'],
+        ],
+        'height': 100,
+        'width': '100%',
+    }
+}

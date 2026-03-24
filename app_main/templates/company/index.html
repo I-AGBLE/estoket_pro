@@ -5,7 +5,13 @@
 
 
 <h2>Welcome to the company Page</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ company_form.as_p }}
+    <button type="submit">Save Company</button>
 
+    {{ company_form.media }}
+</form>
 
 
 
