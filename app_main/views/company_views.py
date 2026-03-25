@@ -6,7 +6,7 @@ from ..forms import CompanyForm
 @login_required
 def company_index(request):
     if request.method == 'POST':
-        company_form = CompanyForm(request.POST)
+        company_form = CompanyForm(request.POST, request.FILES)
         if company_form.is_valid():
             company = company_form.save(commit=False)
             company.user = request.user  # assign FK automatically
