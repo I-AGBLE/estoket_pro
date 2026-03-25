@@ -11,7 +11,7 @@ def company_index(request):
             company = company_form.save(commit=False)
             company.user = request.user  # assign FK automatically
             company.save()
-            return redirect('app_main:company_links')  # or company_detail view
+            return redirect('app_main:links_index')  # or company_detail view
     else:
         company_form = CompanyForm()
 
@@ -19,11 +19,6 @@ def company_index(request):
 
 
 
-
-
-
-def company_links(request):
-    return render(request, 'company/company_links.html')
 
 
 #from django.shortcuts import render

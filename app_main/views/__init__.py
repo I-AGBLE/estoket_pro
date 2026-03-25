@@ -1,2 +1,3 @@
-from .company_views import company_index, company_links
-from .freelancer_views import freelancer_index
+from .company_views import *
+from .freelancer_views import  *
+from .links_view import *
