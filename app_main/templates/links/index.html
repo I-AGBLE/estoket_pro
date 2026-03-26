@@ -1,29 +1,27 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <h2>Welcome to the company links</h2>
 
 <!-- Add Link Form -->
 <form method="POST">
-    {% csrf_token %}
-    {{ links_form.as_p }}
-    <button type="submit">Add</button>
+  {% csrf_token %} {{ links_form.as_p }}
+  <button type="submit">Add</button>
+  <button type="submit" name="complete_profile">Complete Profile</button>
 </form>
 
 <!-- Existing Links -->
 <div class="card mt-3">
-    <p>Your Links</p>
-    {% if links %}
-    <ul class="list-group">
-        {% for link in links %}
-        <li>
-            {{ link.platform|capfirst }}:
-            <a href="{{ link.address }}" target="_blank">{{ link.address }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No links added yet.</p>
-    {% endif %}
+  <p>Your Links</p>
+  {% if links %}
+  <ul class="list-group">
+    {% for link in links %}
+    <li>
+      {{ link.platform|capfirst }}:
+      <a href="{{ link.address }}" target="_blank">{{ link.address }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No links added yet.</p>
+  {% endif %}
 </div>
 {% endblock %}

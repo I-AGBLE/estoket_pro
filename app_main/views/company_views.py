@@ -19,6 +19,10 @@ def company_index(request):
 
 
 
+@login_required
+def company_dashboard(request):
+    return render(request, 'company/company_dashboard.html')
+
 
 
 #from django.shortcuts import render

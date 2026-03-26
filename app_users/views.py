@@ -3,27 +3,36 @@ from django.contrib.auth import login
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth import get_user_model
 
-
 User = get_user_model()
 
 
-# ------------------------------------------- Sign Up View For User Registration -------------------------------------------
+# ------------------------------------------- Sign Up View -------------------------------------------
 def signup_view(request):
     if request.method == 'POST':
-        signup_form = CustomUserCreationForm(request.POST, request.FILES)  # include request.FILES
+        signup_form = CustomUserCreationForm(request.POST, request.FILES)
         if signup_form.is_valid():
             user = signup_form.save()
             login(request, user)
-            return redirect('app_users:index')
+
+            # 👇 Role-based redirect AFTER signup (to setup pages)
+            if user.user_type == 'freelancer':
+                return redirect('app_main:freelancer_index')
+            elif user.user_type == 'company':
+                return redirect('app_main:company_index')
+            else:
+                return redirect('app_users:index')
+
     else:
         signup_form = CustomUserCreationForm()
+
     return render(request, 'signup.html', {'signup_form': signup_form})
 
 
 
 
-# ------------------------------------------- Sign In View For User Registration -------------------------------------------
 
+
+# ------------------------------------------- Login View -------------------------------------------
 def login_view(request):
     login_form = LoginForm()
 
@@ -39,13 +48,13 @@ def login_view(request):
                 if user.check_password(password):
                     login(request, user)
 
-                    # Role-based redirect
+                    # 👇 Role-based redirect AFTER login (to dashboards)
                     if user.user_type == 'freelancer':
-                        return redirect('app_main:freelancer_index')
+                        return redirect('app_main:freelancer_dashboard')
                     elif user.user_type == 'company':
-                        return redirect('app_main:company_index')
+                        return redirect('app_main:company_dashboard')
                     else:
-                        return redirect('app_users:signup')
+                        return redirect('app_users:index')
 
                 else:
                     login_form.add_error(None, "Invalid password")
