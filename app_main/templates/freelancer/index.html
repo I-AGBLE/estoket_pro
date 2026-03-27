@@ -1,13 +1,10 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %}
 
-
-{% block content %}
-
-
-<h2>Welcome to the Freelancer Page</h2>
-
-
-
-
+<h2>Welcome to the freelancer Page</h2>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %} {{ freelancer_form.as_p }}
+  <button type="submit">Next</button>
+  {{ freelancer_form.media }}
+</form>
 
 {% endblock content %}

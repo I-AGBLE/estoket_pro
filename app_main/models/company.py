@@ -7,7 +7,7 @@ import os
 
 User = get_user_model()
 
-# 👇 Custom function for unique image names
+#  Custom function for unique image names
 def company_image_upload_path(instance, filename):
     ext = filename.split('.')[-1]  # get file extension
     unique_filename = f"{uuid.uuid4()}.{ext}"  # generate unique name
