@@ -32,7 +32,7 @@ class Company(models.Model):
     company_phone = models.CharField(max_length=13)
     company_size = models.CharField(max_length=10, choices=COMPANY_SIZE_CHOICES)
 
-    # ✅ Updated image field
+    # Unique naming for company images
     company_image = models.ImageField(
         upload_to=company_image_upload_path,
         blank=True,
