@@ -1,20 +1,41 @@
 {% extends "layout.html" %} {% block content %}
 
 <h2>Freelancer Dashboard</h2>
+  <form
+    method="POST"
+    action="{% url 'app_users:delete_account' %}"
+    onsubmit="
+      return confirm(
+        'Are you sure you want to delete your account? This cannot be undone.',
+      );
+    "
+  >
+    {% csrf_token %}
+    <button type="submit" style="color: white; background-color: red">
+      Delete Account
+    </button>
+  </form>
 
+
+
+  
 {% if freelancer %}
 <div class="card">
+
+
+  <!-- USER DATA -->
   <p><strong>Firstname:</strong> {{ request.user.first_name }}</p>
   <p><strong>Lastname:</strong> {{ request.user.last_name }}</p>
   <p><strong>Username:</strong> {{ request.user.username }}</p>
+  <p><strong>Subscription:</strong> {{ request.user.user_type }}</p>
   <p><strong>About from bio:</strong> {{ request.user.about }}</p>
   <p><strong>Email:</strong> {{ request.user.email }}</p>
   <p><strong>About:</strong> {{ freelancer.freelancer_about }}</p>
   <p><strong>Location:</strong> {{ freelancer.freelancer_location }}</p>
   <p><strong>Industry:</strong> {{ freelancer.freelancer_industry }}</p>
   <p><strong>Phone:</strong> {{ freelancer.freelancer_phone }}</p>
-<p><strong>Avatar:</strong></p>
-<img src="{{ request.user.avatar.url }}" alt="User Avatar" width="150">
+  <p><strong>Avatar:</strong></p>
+  <img src="{{ request.user.avatar.url }}" alt="User Avatar" width="150" />
 </div>
 {% else %}
 <p>You have not completed your freelancer profile yet.</p>
