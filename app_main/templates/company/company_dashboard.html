@@ -1,13 +1,77 @@
 {% extends "layout.html" %}
 
-
 {% block content %}
 
+<h2>Company Dashboard</h2>
 
-<h2>Welcome to the company the main  DASHBOARD Page</h2>
+{% if company %}
+<div class="card">
 
-<form action=""></form>
+  <!-- USER DATA -->
+  <h3>User Information</h3>
+  <p><strong>Firstname:</strong> {{ request.user.first_name }}</p>
+  <p><strong>Lastname:</strong> {{ request.user.last_name }}</p>
+  <p><strong>Username:</strong> {{ request.user.username }}</p>
+  <p><strong>Email:</strong> {{ request.user.email }}</p>
+  <p><strong>About:</strong> {{ request.user.about }}</p>
+  <p><strong>Subscription Type:</strong> {{ request.user.user_type }}</p>
 
 
+  {% if request.user.avatar %}
+    <p><strong>Avatar:</strong></p>
+    <img src="{{ request.user.avatar.url }}" alt="User Avatar" width="150">
+  {% else %}
+    <p>No profile image uploaded</p>
+  {% endif %}
+
+  <hr>
+
+  <!-- COMPANY DATA -->
+  <h3>Company Information</h3>
+  <p><strong>Company Name:</strong> {{ company.company_name }}</p>
+  <p><strong>About:</strong> {{ company.company_about|safe }}</p>
+  <p><strong>Company Website:</strong> www.estoket.com/{{ company.slug }}</p>
+  <p><strong>Location:</strong> {{ company.company_location }}</p>
+  <p><strong>Industry:</strong> {{ company.company_industry }}</p>
+  <p><strong>Phone:</strong> {{ company.company_phone }}</p>
+  <p><strong>Email:</strong> {{ company.company_email }}</p>
+  <p><strong>Size:</strong> {{ company.company_size }}</p>
+  <p><strong>Founded:</strong> {{ company.company_year_founded }}</p>
+<p><strong>Avatar:</strong></p>
+<img src="{{ request.company.company_image.url }}" alt="User Avatar" width="150">
+
+
+  {% if company.company_image %}
+    <p><strong>Company Image:</strong></p>
+    <img src="{{ company.company_image.url }}" alt="Company Image" width="150">
+  {% endif %}
+
+</div>
+
+{% else %}
+<p>You have not completed your company profile yet.</p>
+{% endif %}
+
+<hr>
+
+<!-- LINKS -->
+<h3>Your Links</h3>
+
+{% if links %}
+<ul>
+  {% for link in links %}
+  <li>
+    {{ link.platform|capfirst }}:
+    <a href="{{ link.address }}" target="_blank">{{ link.address }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No links added yet.</p>
+{% endif %}
+
+<br>
+
+<a href="">Edit Profile</a>
 
 {% endblock content %}

@@ -24,12 +24,15 @@ def freelancer_index(request):
 @login_required
 def freelancer_dashboard(request):
     freelancer = None
-    links = request.user.links.all()
 
+    # Get the freelancer linked to this user
     try:
-        freelancer = request.user.freelancer
-    except Freelancer.DoesNotExist:
+        freelancer = request.user.freelancer  # 👈 no .first()
+    except:
         freelancer = None
+
+    # Get user links
+    links = request.user.links.all()
 
     return render(request, 'freelancer/freelancer_dashboard.html', {
         'freelancer': freelancer,

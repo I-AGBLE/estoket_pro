@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from ..forms import CompanyForm
+from ..models import Company
+
+
+
 
 @login_required
 def company_index(request):
@@ -19,10 +23,25 @@ def company_index(request):
 
 
 
+
+
 @login_required
 def company_dashboard(request):
-    return render(request, 'company/company_dashboard.html')
+    company = None
 
+    # Get the company linked to this user
+    try:
+        company = request.user.companies.first()  # since you used ForeignKey
+    except:
+        company = None
+
+    # Get user links
+    links = request.user.links.all()
+
+    return render(request, 'company/company_dashboard.html', {
+        'company': company,
+        'links': links
+    })
 
 
 #from django.shortcuts import render
