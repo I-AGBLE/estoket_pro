@@ -4,11 +4,17 @@
 
 {% if freelancer %}
 <div class="card">
+  <p><strong>Firstname:</strong> {{ request.user.first_name }}</p>
+  <p><strong>Lastname:</strong> {{ request.user.last_name }}</p>
+  <p><strong>Username:</strong> {{ request.user.username }}</p>
+  <p><strong>About from bio:</strong> {{ request.user.about }}</p>
   <p><strong>Email:</strong> {{ request.user.email }}</p>
   <p><strong>About:</strong> {{ freelancer.freelancer_about }}</p>
   <p><strong>Location:</strong> {{ freelancer.freelancer_location }}</p>
   <p><strong>Industry:</strong> {{ freelancer.freelancer_industry }}</p>
   <p><strong>Phone:</strong> {{ freelancer.freelancer_phone }}</p>
+<p><strong>Avatar:</strong></p>
+<img src="{{ request.user.avatar.url }}" alt="User Avatar" width="150">
 </div>
 {% else %}
 <p>You have not completed your freelancer profile yet.</p>
