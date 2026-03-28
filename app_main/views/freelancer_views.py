@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from ..forms import FreelancerForm
+from ..models import Freelancer
+from ..models import Links
 
 
 @login_required
@@ -19,8 +21,17 @@ def freelancer_index(request):
 
 
 
-
 @login_required
 def freelancer_dashboard(request):
-    return render(request, 'freelancer/freelancer_dashboard.html')
+    freelancer = None
+    links = request.user.links.all()
 
+    try:
+        freelancer = request.user.freelancer
+    except Freelancer.DoesNotExist:
+        freelancer = None
+
+    return render(request, 'freelancer/freelancer_dashboard.html', {
+        'freelancer': freelancer,
+        'links': links
+    })

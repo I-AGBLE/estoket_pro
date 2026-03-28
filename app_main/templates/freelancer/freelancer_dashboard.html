@@ -1,13 +1,34 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %}
 
+<h2>Freelancer Dashboard</h2>
 
-{% block content %}
+{% if freelancer %}
+<div class="card">
+  <p><strong>Email:</strong> {{ request.user.email }}</p>
+  <p><strong>About:</strong> {{ freelancer.freelancer_about }}</p>
+  <p><strong>Location:</strong> {{ freelancer.freelancer_location }}</p>
+  <p><strong>Industry:</strong> {{ freelancer.freelancer_industry }}</p>
+  <p><strong>Phone:</strong> {{ freelancer.freelancer_phone }}</p>
+</div>
+{% else %}
+<p>You have not completed your freelancer profile yet.</p>
+{% endif %}
 
+<h3>Your Links</h3>
 
-<h2>Welcome to the company the main  freelancer Page</h2>
+{% if links %}
+<ul>
+  {% for link in links %}
+  <li>
+    {{ link.platform }}:
+    <a href="{{ link.address }}">{{ link.address }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No links added yet.</p>
+{% endif %}
 
-<form action=""></form>
-
-
+<a href="">Edit Profile</a>
 
 {% endblock content %}
