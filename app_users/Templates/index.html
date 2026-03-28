@@ -1,17 +1,18 @@
-{% extends "layout.html" %}
-
-
-{% block content %}
-
+{% extends "layout.html" %} {% block content %}
 
 <h2>Login</h2>
 <form method="POST">
   {% csrf_token %} {{ login_form.as_p }}
+
+  <div class="show_password">
+    <input type="checkbox" id="showPassword" />
+    <label for="showPassword">Show Password</label>
+  </div>
   <button type="submit">Sign In</button>
 </form>
 
-
-<p>Don't have an account? <a href="{% url 'app_users:signup' %}">Sign Up Now!</a></p>
-
+<p>
+  Don't have an account? <a href="{% url 'app_users:signup' %}">Sign Up Now!</a>
+</p>
 
 {% endblock content %}
