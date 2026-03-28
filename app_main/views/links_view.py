@@ -17,24 +17,39 @@ def links_index(request):
             else:
                 return redirect('app_users:index')
 
-        # ------------------- Add new link -------------------
+
+    
+@login_required
+def links_index(request):
+    links = request.user.links.all()
+
+    if request.method == 'POST':
+
+        if 'complete_profile' in request.POST:
+            if request.user.user_type == 'company':
+                return redirect('app_main:company_dashboard')
+            elif request.user.user_type == 'freelancer':
+                return redirect('app_main:freelancer_dashboard')
+            else:
+                return redirect('app_users:index')
+
         link_form = LinksForm(request.POST)
+
         if link_form.is_valid():
             new_link = link_form.save(commit=False)
             new_link.user = request.user
 
-            # Prevent duplicate links for the same user
-            if not request.user.links.filter(
+            if request.user.links.filter(
                 platform=new_link.platform,
                 address=new_link.address
             ).exists():
+                link_form.add_error(None, "This link already exists.")
+            else:
                 new_link.save()
-
-            # Refresh the page (new empty form and updated list)
-            return redirect('app_main:links_index')
+                return redirect('app_main:links_index')
 
     else:
-        link_form = LinksForm()  # empty form
+        link_form = LinksForm()
 
     return render(request, 'links/index.html', {
         'links_form': link_form,

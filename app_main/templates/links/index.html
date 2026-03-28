@@ -3,7 +3,10 @@
 
 <!-- Add Link Form -->
 <form method="POST">
-  {% csrf_token %} {{ links_form.as_p }}
+  {% csrf_token %} 
+  
+  
+  {{ links_form.as_p }}
   <button type="submit">Add</button>
   <button type="submit" name="complete_profile">Complete Profile</button>
 </form>
