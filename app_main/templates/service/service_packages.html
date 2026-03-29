@@ -1,0 +1,16 @@
+<h2>Add Packages for: {{ service.service_title }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ service_package_form.as_p }}
+    <button type="submit">Add Package</button>
+</form>
+
+<h3>Existing Packages</h3>
+<ul>
+    {% for package in packages %}
+        <li>{{ package.package_type|title }} - ${{ package.package_price }}: {{ package.package_desc }}</li>
+    {% empty %}
+        <li>No packages added yet.</li>
+    {% endfor %}
+</ul>

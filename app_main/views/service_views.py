@@ -23,7 +23,7 @@ def service_index(request):
             service.category = service.category.strip().title()
 
             service.save()
-            return redirect('app_main:service_detail', service_id=service.id)
+            return redirect('app_main:service_packages', service_id=service.id)
     else:
         service_form = ServiceForm()
 
@@ -42,3 +42,10 @@ def service_detail(request, service_id):
 
     # Pass the service to the template
     return render(request, 'service/service_detail.html', {'service': service})
+
+
+
+
+
+
+
