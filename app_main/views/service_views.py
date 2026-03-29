@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
 from ..forms import ServiceForm
-from ..models import Company  # if needed
+from ..models import Company, Service
 
 
 
@@ -24,5 +25,8 @@ def service_index(request):
     
 
 def service_detail(request, service_id):
-    
-    return render(request, 'service/service_detail.html')
+    # Fetch the service or return 404 if it doesn't exist
+    service = get_object_or_404(Service, id=service_id)
+
+    # Pass the service to the template
+    return render(request, 'service/service_detail.html', {'service': service})

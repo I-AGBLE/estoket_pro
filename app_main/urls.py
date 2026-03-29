@@ -30,5 +30,5 @@ urlpatterns = [
 
 # Public URLs
 urlpatterns += [
-    path('<slug:slug>/', custom_website, name='custom_website'),  # LAST
+    path('<slug:slug>/', custom_website, name='custom_website'),  
 ]

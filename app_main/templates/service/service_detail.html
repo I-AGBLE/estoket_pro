@@ -3,6 +3,18 @@
 <h2>Preview Your Service</h2>
 
     
+<div class="service-detail">
+    <h1>{{ service.service_title }}</h1>
+
+    {% if service.service_image %}
+        <img src="{{ service.service_image.url }}" alt="{{ service.service_title }}" style="max-width:100%;">
+    {% endif %}
+
+    <div class="service-description">
+        {{ service.service_description|safe }}
+    </div>
+</div>
+
 
 
 {% endblock content %}
