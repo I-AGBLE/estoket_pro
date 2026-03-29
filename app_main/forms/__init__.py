@@ -1,3 +1,4 @@
 from .company_forms import *
 from .freelancer_forms import *
 from .links_form import *
+from .service_forms import *

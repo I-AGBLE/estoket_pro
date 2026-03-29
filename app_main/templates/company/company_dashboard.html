@@ -17,7 +17,29 @@
   </button>
 </form>
 
-<a href="{% url 'app_main:custom_website' company.slug %}">  www.estoket.com/{{ company.slug }} </a>
+<br>
+
+{% if company and company.slug %}
+<a href="{% url 'app_main:custom_website' company.slug %}">
+    www.estoket.com/{{ company.slug }}
+</a>
+{% else %}
+<span>Site not available yet</span>
+{% endif %}
+
+<aside>
+  <h3>Company Dashboard</h3>
+  <ul>
+    <li><a href="{% url 'app_main:company_dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'app_main:service_index' %}">Add Service</a></li>
+    <li><a href="#">Edit Profile</a></li>
+    <li><a href="#">Manage Services</a></li>
+    <li><a href="#">View Analytics</a></li>
+    <li><a href="#">Settings</a></li>
+  </ul>
+</aside>
+
+
 
 {% if company %}
 <div class="card">

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="Px0Xxct-e4n-4V-Y3GMV" name="Page-1">
-        <mxGraphModel dx="2225" dy="776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1252" dy="328" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -348,8 +348,8 @@
                         <mxPoint x="942" y="620" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="125" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;pages&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FFCC;" parent="1" vertex="1">
-                    <mxGeometry x="1400" y="570" width="120" height="30" as="geometry"/>
+                <mxCell id="125" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;services&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FFCC;" parent="1" vertex="1">
+                    <mxGeometry x="1410" y="820" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="127" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;service&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FFFF;" parent="1" vertex="1">
                     <mxGeometry x="1440" y="650" width="120" height="30" as="geometry"/>
@@ -575,6 +575,33 @@
                         <mxPoint x="475" y="950" as="sourcePoint"/>
                         <mxPoint x="377" y="1049" as="targetPoint"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="201" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;pages&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FFCC;" vertex="1" parent="1">
+                    <mxGeometry x="1410" y="570" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="202" value="&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;partials&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FFFF;" vertex="1" parent="1">
+                    <mxGeometry x="1440" y="870" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="203" value="&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;category.html&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="1480" y="920" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="204" value="&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;expertise.html&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="1480" y="960" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="205" value="&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;packages.html&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="1480" y="1000" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="206" value="&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;faqs.html&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="1480" y="1040" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="207" value="&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;index&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;( add services )&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FFFF;" vertex="1" parent="1">
+                    <mxGeometry x="1440" y="1080" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="210" value="&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;service_detail&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;( single service )&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FFFF;" vertex="1" parent="1">
+                    <mxGeometry x="1440" y="1120" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="211" value="user_services&lt;div&gt;(all services frm user)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FFFF;" vertex="1" parent="1">
+                    <mxGeometry x="1440" y="1160" width="120" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
