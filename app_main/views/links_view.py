@@ -25,6 +25,7 @@ def links_index(request):
 
     if request.method == 'POST':
 
+        # ✅ Handle this FIRST and exit immediately
         if 'complete_profile' in request.POST:
             if request.user.user_type == 'company':
                 return redirect('app_main:company_dashboard')
@@ -33,6 +34,7 @@ def links_index(request):
             else:
                 return redirect('app_users:index')
 
+        # ✅ Only run form logic if NOT complete_profile
         link_form = LinksForm(request.POST)
 
         if link_form.is_valid():

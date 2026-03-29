@@ -6,8 +6,7 @@ For instance:
 
 if user does not finish filling the links form, he should always be linked to the form whether company form or 
 
-james@doe.com === freelancer
-james12345
 
-james@gunner.com === company
-james@12345
+@super_user
+agble
+agble123

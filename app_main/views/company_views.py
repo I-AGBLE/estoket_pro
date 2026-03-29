@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
 
 from ..forms import CompanyForm
 from ..models import Company
@@ -40,6 +41,27 @@ def company_dashboard(request):
 
     return render(request, 'company/company_dashboard.html', {
         'company': company,
+        'links': links
+    })
+    
+    
+    
+
+
+
+def custom_website(request, slug):
+    # Get company using slug
+    company = get_object_or_404(Company, slug=slug)
+
+    # Get the user linked to the company
+    user = company.user
+
+    # Get links belonging to that user
+    links = user.links.all()
+
+    return render(request, 'company/custom_website.html', {
+        'company': company,
+        'user': user,
         'links': links
     })
 

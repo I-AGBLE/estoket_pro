@@ -1,43 +1,11 @@
 {% extends "layout.html" %} {% block content %}
 
-<h2>Company Dashboard</h2>
-
-<form
-  method="POST"
-  action="{% url 'app_users:delete_account' %}"
-  onsubmit="
-    return confirm(
-      'Are you sure you want to delete your account? This cannot be undone.',
-    );
-  "
->
-  {% csrf_token %}
-  <button type="submit" style="color: white; background-color: red">
-    Delete Account
-  </button>
-</form>
-
-<a href="{% url 'app_main:custom_website' company.slug %}">  www.estoket.com/{{ company.slug }} </a>
+<h2>Company Website</h2>
 
 {% if company %}
 <div class="card">
   <!-- USER DATA -->
-  <h3>User Information</h3>
-  <p><strong>Firstname:</strong> {{ request.user.first_name }}</p>
-  <p><strong>Lastname:</strong> {{ request.user.last_name }}</p>
-  <p><strong>Username:</strong> {{ request.user.username }}</p>
-  <p><strong>Email:</strong> {{ request.user.email }}</p>
-  <p><strong>About:</strong> {{ request.user.about|safe }}</p>
-  <p><strong>Subscription Type:</strong> {{ request.user.user_type }}</p>
-
-  {% if request.user.avatar %}
-  <p><strong>Avatar:</strong></p>
-  <img src="{{ request.user.avatar.url }}" alt="User Avatar" width="150" />
-  {% else %}
-  <p>No profile image uploaded</p>
-  {% endif %}
-
-  <hr />
+ 
 
   <!-- COMPANY DATA -->
   <h3>Company Information</h3>
@@ -50,6 +18,7 @@
   <p><strong>Email:</strong> {{ company.company_email }}</p>
   <p><strong>Size:</strong> {{ company.company_size }}</p>
   <p><strong>Founded:</strong> {{ company.company_year_founded }}</p>
+
 
   {% if company.company_image %}
   <p><strong>Company Image:</strong></p>

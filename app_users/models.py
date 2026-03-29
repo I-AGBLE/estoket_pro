@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from ckeditor.fields import RichTextField
+
 
 
 # ------------------------------------- Custom User Model For Authentication --------------------------------------
@@ -11,10 +13,6 @@ USER_TYPE_CHOICES = [
 
 class CustomUser(AbstractUser):
     user_type = models.CharField(max_length=11, choices=USER_TYPE_CHOICES, default='individual')
-    about = models.TextField(blank=True, null=True)
+    about = RichTextField(config_name='default')
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
-
- 
-
-
 

@@ -1,12 +1,17 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
+from ckeditor.widgets import CKEditorWidget
+
 
 
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(required=True, label="Username")  # added field
+   
     about = forms.CharField(
-        required=False, widget=forms.Textarea(attrs={"rows": 3}), label="About You"
+        required=False,
+        widget=CKEditorWidget(),  # ✅ FIX
+        label="About You"
     )
     avatar = forms.ImageField(required=False, label="Profile Image")
 

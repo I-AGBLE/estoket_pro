@@ -8,7 +8,15 @@
   
   {{ links_form.as_p }}
   <button type="submit">Add</button>
-  <button type="submit" name="complete_profile">Complete Profile</button>
+
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" name="complete_profile" formnovalidate>
+        Complete Profile
+    </button>
+</form>
+
 </form>
 
 <!-- Existing Links -->
