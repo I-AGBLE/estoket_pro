@@ -3,10 +3,15 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add Expertise</button>
+
+    <!-- Add expertise and stay on page -->
+    <button type="submit" name="action" value="add">Add Expertise</button>
+
+    <!-- Add expertise and go to FAQs page -->
+    <button type="submit" name="action" value="next">Add & Go to FAQs</button>
 </form>
 
-<h3>Existing Expertise</h3>
+<h3>Existing Expertises</h3>
 <ul>
     {% for expertise in expertises %}
         <li>

@@ -1,24 +1,77 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %}
+{% block content %}
 
 <h2>Preview Your Service</h2>
 
-    
 <div class="service-detail">
     <h1>{{ service.service_title }}</h1>
 
     {% if service.service_image %}
-        <img src="{{ service.service_image.url }}" alt="{{ service.service_title }}" style="max-width:100%;">
+        <img src="{{ service.service_image.url }}" alt="{{ service.service_title }}" style="max-width:100%; margin-bottom: 20px;">
     {% endif %}
 
-    <div class="service-description">
+    <div class="service-category">
+        <strong>Category:</strong> {{ service.category }}
+    </div>
+
+    <div class="service-description" style="margin-top: 10px;">
+        <strong>Description:</strong>
         {{ service.service_description|safe }}
     </div>
 
-     <div class="service-description">
-        {{ service.category |safe }}
+    <!-- Packages -->
+    <div class="service-packages" style="margin-top: 20px;">
+        <h3>Packages</h3>
+        {% if service.packages.all %}
+            <ul>
+                {% for package in service.packages.all %}
+                    <li>
+                        <strong>{{ package.package_type|title }}</strong> - ${{ package.package_price }}: {{ package.package_desc }}
+                    </li>
+                {% empty %}
+                    <li>No packages added yet.</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No packages added yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Expertises -->
+    <div class="service-expertises" style="margin-top: 20px;">
+        <h3>Expertises</h3>
+        {% if service.expertises.all %}
+            <ul>
+                {% for expertise in service.expertises.all %}
+                    <li>
+                        <strong>{{ expertise.expertise_title }}</strong>: {{ expertise.expertise_about }}
+                    </li>
+                {% empty %}
+                    <li>No expertises added yet.</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No expertises added yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- FAQs -->
+    <div class="service-faqs" style="margin-top: 20px;">
+        <h3>FAQs</h3>
+        {% if service.faqs.all %}
+            <ul>
+                {% for faq in service.faqs.all %}
+                    <li>
+                        <strong>{{ faq.faq_question }}</strong>: {{ faq.faq_answer }}
+                    </li>
+                {% empty %}
+                    <li>No FAQs added yet.</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No FAQs added yet.</p>
+        {% endif %}
     </div>
 </div>
-
-
 
 {% endblock content %}

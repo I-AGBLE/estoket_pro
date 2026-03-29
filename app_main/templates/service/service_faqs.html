@@ -1,0 +1,21 @@
+<h2>Add FAQs for: {{ service.service_title }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Add FAQ and stay -->
+    <button type="submit" name="action" value="add">Add FAQ</button>
+
+    <!-- Add FAQ and go to service details -->
+    <button type="submit" name="action" value="next">Add & Go to Service Details</button>
+</form>
+
+<h3>Existing FAQs</h3>
+<ul>
+    {% for faq in faqs %}
+        <li><strong>{{ faq.faq_question }}</strong>: {{ faq.faq_answer }}</li>
+    {% empty %}
+        <li>No FAQs added yet.</li>
+    {% endfor %}
+</ul>

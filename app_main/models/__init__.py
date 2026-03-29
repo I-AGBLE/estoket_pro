@@ -4,5 +4,6 @@ from .freelancer import *
 from .service import *
 from .packages import *
 from .expertise import *
+from .faqs import *
 
 

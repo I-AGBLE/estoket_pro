@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from ..models.service import Service
+from ..models.expertise import Expertise
 from ..forms import ExpertiseForm
-
 
 @login_required
 def service_expertise(request, service_id):
@@ -18,7 +18,14 @@ def service_expertise(request, service_id):
             expertise.service = service
             expertise.save()
             messages.success(request, f"{expertise.expertise_title} added!")
-            return redirect('app_main:service_expertise', service_id=service.id)  # Add more if needed
+
+            # 👇 Check which button was clicked
+            if request.POST.get('action') == 'next':
+                # Redirect to the FAQs page for this service
+                return redirect('app_main:service_faqs', service_id=service.id)
+            else:
+                # Stay on the expertise page to add more
+                return redirect('app_main:service_expertise', service_id=service.id)
 
     expertises = service.expertises.all()
     return render(request, 'service/service_expertise.html', {
