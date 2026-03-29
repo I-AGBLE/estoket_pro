@@ -2,14 +2,9 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from app_main.models.service import Service
-
-from ..forms import ServicePackageForm
-
-
+from ..models.service import Service
 from ..models import ServicePackage
-
-
+from ..forms import ServicePackageForm
 
 @login_required
 def service_packages(request, service_id):
@@ -24,7 +19,15 @@ def service_packages(request, service_id):
             try:
                 package.save()
                 messages.success(request, f"{package.package_type.title()} package added!")
-                return redirect('app_main:service_packages', service_id=service.id)
+
+                # Determine which button was clicked
+                if request.POST.get('action') == 'next':
+                    # Redirect to expertise page for this service
+                    return redirect('app_main:service_expertise', service_id=service.id)
+                else:
+                    # Stay on the packages page to add more
+                    return redirect('app_main:service_packages', service_id=service.id)
+
             except:
                 service_package_form.add_error('package_type', 'This package type already exists for this service.')
 

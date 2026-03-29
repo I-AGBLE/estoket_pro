@@ -8,6 +8,8 @@ from .views.freelancer_views import freelancer_index, freelancer_dashboard
 from .views.links_view import links_index
 from .views.service_views import service_index, service_detail
 from .views.service_packages import service_packages
+from .views.expertise_view import service_expertise
+
 
 
 app_name = "app_main"
@@ -27,6 +29,8 @@ urlpatterns = [
     path("service/", service_index, name="service_index"),
     path('service/<int:service_id>/', service_detail, name='service_detail'),
     path('service/<int:service_id>/packages/', service_packages, name='service_packages'),
+    path('service/<int:service_id>/expertise/', service_expertise, name='service_expertise'), 
+
     
 ]
 

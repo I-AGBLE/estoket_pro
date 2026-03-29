@@ -1,0 +1,18 @@
+<h2>Add Expertise for: {{ service.service_title }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Expertise</button>
+</form>
+
+<h3>Existing Expertise</h3>
+<ul>
+    {% for expertise in expertises %}
+        <li>
+            <strong>{{ expertise.expertise_title }}</strong>: {{ expertise.expertise_about }}
+        </li>
+    {% empty %}
+        <li>No expertise added yet.</li>
+    {% endfor %}
+</ul>

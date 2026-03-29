@@ -3,7 +3,12 @@
 <form method="POST">
     {% csrf_token %}
     {{ service_package_form.as_p }}
-    <button type="submit">Add Package</button>
+
+    <!-- Submit normally to add package -->
+    <button type="submit" name="action" value="add">Add Package</button>
+
+    <!-- Submit and go to expertise page -->
+    <button type="submit" name="action" value="next">Add Package & Go to Expertise</button>
 </form>
 
 <h3>Existing Packages</h3>
