@@ -5,26 +5,36 @@
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
 
-  <!-- Render other fields normally -->
-  {{ service_form.service_title.as_p }}
+  <!-- Service Title -->
+  <p>
+    {{ service_form.service_title.label_tag }}
+    {{ service_form.service_title }}
+  </p>
 
-  <!-- 👇 Custom render category field -->
+  <!-- Category with datalist -->
   <p>
     {{ service_form.category.label_tag }}
     {{ service_form.category }}
   </p>
-
-  <!-- 👇 Datalist -->
   <datalist id="category-list">
     {% for cat in categories %}
       <option value="{{ cat }}">
     {% endfor %}
   </datalist>
 
-  <!-- Continue with other fields -->
-  {{ service_form.service_description.as_p }}
-  {{ service_form.service_image.as_p }}
+  <!-- Service Description -->
+  <p>
+    {{ service_form.service_description.label_tag }}
+    {{ service_form.service_description }}
+  </p>
 
+  <!-- Service Image -->
+  <p>
+    {{ service_form.service_image.label_tag }}
+    {{ service_form.service_image }}
+  </p>
+
+  <!-- Submit -->
   <button type="submit">Add Service</button>
 
   {{ service_form.media }}
