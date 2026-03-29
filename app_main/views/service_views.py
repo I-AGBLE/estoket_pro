@@ -9,18 +9,30 @@ from ..models import Company, Service
 # views.py
 @login_required
 def service_index(request):
+    # Get existing categories (for datalist suggestions)
+    categories = Service.objects.values_list('category', flat=True).distinct()
+
     if request.method == 'POST':
         service_form = ServiceForm(request.POST, request.FILES)
 
         if service_form.is_valid():
             service = service_form.save(commit=False)
             service.user = request.user
+
+            # Optional: normalize category (avoid duplicates like "design" vs "Design")
+            service.category = service.category.strip().title()
+
             service.save()
             return redirect('app_main:service_detail', service_id=service.id)
     else:
         service_form = ServiceForm()
 
-    return render(request, 'service/index.html', {'service_form': service_form})
+    return render(request, 'service/index.html', {
+        'service_form': service_form,
+        'categories': categories  # 👈 pass to template
+    })
+    
+    
     
     
 
