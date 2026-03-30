@@ -17,6 +17,19 @@
   </form>
 
 
+  <aside>
+  <h3>Company Dashboard</h3>
+  <ul>
+    <li><a href="{% url 'app_main:freelancer_dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'app_main:service_index' %}">Add Service</a></li>
+    <li><a href="#">Edit Profile</a></li>
+    <li><a href="#">Manage Services</a></li>
+    <li><a href="#">View Analytics</a></li>
+    <li><a href="#">Settings</a></li>
+  </ul>
+</aside>
+
+
 
   
 {% if freelancer %}
@@ -26,9 +39,9 @@
   <p><strong>Lastname:</strong> {{ request.user.last_name }}</p>
   <p><strong>Username:</strong> {{ request.user.username }}</p>
   <p><strong>Subscription:</strong> {{ request.user.user_type }}</p>
-  <p><strong>About from bio:</strong> {{ request.user.about }}</p>
+  <p><strong>About from bio:</strong> {{ request.user.about|safe }}</p>
   <p><strong>Email:</strong> {{ request.user.email }}</p>
-  <p><strong>About:</strong> {{ freelancer.freelancer_about }}</p>
+  <p><strong>About:</strong> {{ freelancer.freelancer_about|safe }}</p>
   <p><strong>Location:</strong> {{ freelancer.freelancer_location }}</p>
   <p><strong>Industry:</strong> {{ freelancer.freelancer_industry }}</p>
   <p><strong>Phone:</strong> {{ freelancer.freelancer_phone }}</p>

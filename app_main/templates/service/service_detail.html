@@ -37,9 +37,9 @@
         {% endif %}
     </div>
 
-    <!-- Expertises -->
-    <div class="service-expertises" style="margin-top: 20px;">
-        <h3>Expertises</h3>
+    <!-- Expertise -->
+    <div class="service-expertise" style="margin-top: 20px;">
+        <h3>Expertise</h3>
         {% if service.expertises.all %}
             <ul>
                 {% for expertise in service.expertises.all %}
@@ -47,11 +47,11 @@
                         <strong>{{ expertise.expertise_title }}</strong>: {{ expertise.expertise_about }}
                     </li>
                 {% empty %}
-                    <li>No expertises added yet.</li>
+                    <li>No expertise added yet.</li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No expertises added yet.</p>
+            <p>No expertise added yet.</p>
         {% endif %}
     </div>
 
