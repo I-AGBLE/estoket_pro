@@ -29,7 +29,7 @@ def service_index(request):
 
     return render(request, 'service/index.html', {
         'service_form': service_form,
-        'categories': categories  # 👈 pass to template
+        'categories': categories  # pass to template
     })
     
     

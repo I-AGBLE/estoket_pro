@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Edit Service</h2>
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!-- Title -->
+  <p>
+    {{ service_form.service_title.label_tag }}
+    {{ service_form.service_title }}
+  </p>
+
+  <!-- Category with datalist -->
+  <p>
+    {{ service_form.category.label_tag }}
+    <input 
+        type="text" 
+        name="category" 
+        value="{{ service.category }}" 
+        list="category-list" 
+        class="form-control"
+    >
+  </p>
+
+  <datalist id="category-list">
+    {% for cat in categories %}
+      <option value="{{ cat }}">
+    {% endfor %}
+  </datalist>
+
+  <!-- Description -->
+  <p>
+    {{ service_form.service_description.label_tag }}
+    {{ service_form.service_description }}
+  </p>
+
+  <!-- Image -->
+  <p>
+    {{ service_form.service_image.label_tag }}
+    {{ service_form.service_image }}
+  </p>
+
+  <!-- Current Image Preview -->
+  {% if service.service_image %}
+    <p>Current Image:</p>
+    <img src="{{ service.service_image.url }}" style="max-width:200px;">
+  {% endif %}
+
+  <button type="submit">Update & Continue</button>
+
+  {{ service_form.media }}
+</form>
+
+{% endblock %}

@@ -10,6 +10,7 @@ from .views.service_views import service_index, service_detail
 from .views.service_packages import service_packages
 from .views.expertise_view import service_expertise
 from .views.faqs_view import service_faqs
+from .views.edit_services import edit_service
 
 
 
@@ -33,8 +34,8 @@ urlpatterns = [
     path('service/<int:service_id>/packages/', service_packages, name='service_packages'),
     path('service/<int:service_id>/expertise/', service_expertise, name='service_expertise'), 
     path('service/<int:service_id>/faqs/', service_faqs, name='service_faqs'),
-    path('manage_services/', views.manage_services, name='manage_services')
-
+    path('manage_services/', views.manage_services, name='manage_services'),
+    path('service/<int:service_id>/edit/', edit_service, name='edit_service'),
 
     
 ]

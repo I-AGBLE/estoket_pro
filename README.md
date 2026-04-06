@@ -22,3 +22,20 @@ edit expertise
 edit faq
 edit package
 edit links: for profile signup 
+
+
+
+🔥 Simple Commit Type Cheat Sheet
+
+feat → new feature
+fix → bug fix
+refactor → improve code without changing behavior
+style → UI/design/formatting changes
+chore → cleanup, deletions, maintenance
+docs → documentation changes
+test → adding or updating tests
+perf → performance improvements
+build → dependencies or build system changes
+ci → CI/CD or deployment changes
+revert → undo a previous commit
+
