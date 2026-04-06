@@ -8,8 +8,8 @@ from .views.freelancer_views import freelancer_index, freelancer_dashboard
 from .views.links_view import links_index
 from .views.service_views import service_index, service_detail
 from .views.service_packages import delete_service_package, service_packages
-from .views.expertise_view import service_expertise
-from .views.faqs_view import service_faqs
+from .views.expertise_view import service_expertise, delete_service_expertise
+from .views.faqs_view import service_faqs, delete_service_faq
 from .views.edit_services import edit_service
 
 
@@ -39,6 +39,13 @@ urlpatterns = [
 
     path('service/<int:service_id>/packages/', service_packages, name='service_packages'),
     path('package/<int:package_id>/delete/', delete_service_package, name='delete_service_package'),
+    
+    # urls.py
+    path('service/<int:service_id>/expertise/', service_expertise, name='service_expertise'),
+    path('expertise/<int:expertise_id>/delete/', delete_service_expertise, name='delete_service_expertise'),
+
+    path('service/<int:service_id>/faqs/', service_faqs, name='service_faqs'),
+    path('faq/<int:faq_id>/delete/', delete_service_faq, name='delete_service_faq'),
 ]
 
 # Public URLs

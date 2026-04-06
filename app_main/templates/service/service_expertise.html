@@ -1,21 +1,34 @@
-<h2>Add Expertise for: {{ service.service_title }}</h2>
+<h2>Add/Edit Expertise for: {{ service.service_title }}</h2>
 
 <form method="POST">
     {% csrf_token %}
+
+    {% if editing %}
+        <input type="hidden" name="expertise_id" value="{{ editing }}">
+    {% endif %}
+
     {{ form.as_p }}
 
-    <!-- Add expertise and stay on page -->
-    <button type="submit" name="action" value="add">Add Expertise</button>
+    <button type="submit" name="action" value="add">
+        {% if editing %}Update Expertise{% else %}Add Expertise{% endif %}
+    </button>
 
-    <!-- Add expertise and go to FAQs page -->
-    <button type="submit" name="action" value="next">Add & Go to FAQs</button>
+    <button type="submit" name="action" value="next" novalidate>
+        {% if editing %}Update & Go to FAQs{% else %}Add & Go to FAQs{% endif %}
+    </button>
 </form>
 
-<h3>Existing Expertises</h3>
+<h3>Existing Expertise</h3>
 <ul>
-    {% for expertise in expertises %}
+    {% for exp in expertises %}
         <li>
-            <strong>{{ expertise.expertise_title }}</strong>: {{ expertise.expertise_about }}
+            {{ exp.expertise_title }}
+            <a href="?edit={{ exp.id }}">Edit</a>
+            |
+            <a href="{% url 'app_main:delete_service_expertise' exp.id %}" 
+               onclick="return confirm('Are you sure you want to delete this expertise?');">
+               Delete
+            </a>
         </li>
     {% empty %}
         <li>No expertise added yet.</li>
