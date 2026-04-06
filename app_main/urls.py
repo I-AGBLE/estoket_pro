@@ -7,7 +7,7 @@ from .views.company_views import company_index, company_dashboard, custom_websit
 from .views.freelancer_views import freelancer_index, freelancer_dashboard
 from .views.links_view import links_index
 from .views.service_views import service_index, service_detail
-from .views.service_packages import service_packages
+from .views.service_packages import delete_service_package, service_packages
 from .views.expertise_view import service_expertise
 from .views.faqs_view import service_faqs
 from .views.edit_services import edit_service
@@ -37,7 +37,8 @@ urlpatterns = [
     path('manage_services/', views.manage_services, name='manage_services'),
     path('service/<int:service_id>/edit/', edit_service, name='edit_service'),
 
-    
+    path('service/<int:service_id>/packages/', service_packages, name='service_packages'),
+    path('package/<int:package_id>/delete/', delete_service_package, name='delete_service_package'),
 ]
 
 # Public URLs

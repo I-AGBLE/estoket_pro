@@ -2,19 +2,40 @@
 
 <form method="POST">
     {% csrf_token %}
+
+    <!-- Hidden field for edit -->
+    {% if editing %}
+        <input type="hidden" name="package_id" value="{{ editing.id }}">
+    {% endif %}
+
     {{ service_package_form.as_p }}
 
-    <!-- Submit normally to add package -->
-    <button type="submit" name="action" value="add">Add Package</button>
+    <button type="submit" name="action" value="add">
+        {% if editing %}Update Package{% else %}Add Package{% endif %}
+    </button>
 
-    <!-- Submit and go to expertise page -->
-    <button type="submit" name="action" value="next">Add Package & Go to Expertise</button>
+    <button type="submit" name="action" value="next" novalidate>
+        {% if editing %}Update & Go to Expertise{% else %}Add & Go to Expertise{% endif %}
+    </button>
 </form>
 
 <h3>Existing Packages</h3>
 <ul>
     {% for package in packages %}
-        <li>{{ package.package_type|title }} - ${{ package.package_price }}: {{ package.package_desc }}</li>
+        <li>
+            {{ package.package_type|title }} - ${{ package.package_price }}: {{ package.package_desc }}
+
+            <!-- Edit -->
+            <a href="{% url 'app_main:service_packages' service.id %}?edit={{ package.id }}">
+                Edit
+            </a>
+
+            <!-- Delete -->
+            <a href="{% url 'app_main:delete_service_package' package.id %}" 
+               onclick="return confirm('Are you sure you want to delete this package?');">
+                Delete
+            </a>
+        </li>
     {% empty %}
         <li>No packages added yet.</li>
     {% endfor %}
