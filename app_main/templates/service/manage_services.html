@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>My Services</h2>
+
+<a href="{% url 'app_main:service_index' %}">
+    <button>Add New Service</button>
+</a>
+
+<hr>
+
+{% if services %}
+<table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Packages</th>
+            <th>Expertise</th>
+            <th>FAQs</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for service in services %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+
+            <td>
+                {% if service.service_image %}
+                    <img src="{{ service.service_image.url }}" style="width:80px;">
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+
+            <td>{{ service.service_title }}</td>
+
+            <td>{{ service.category }}</td>
+
+            <td>{{ service.service_description|truncatewords:10|safe }}</td>
+
+            <td>{{ service.packages.count }}</td>
+            <td>{{ service.expertises.count }}</td>
+            <td>{{ service.faqs.count }}</td>
+
+            <td>
+                <a href="{% url 'app_main:service_detail' service.id %}">
+                    <button>View</button>
+                </a>
+
+                <a href="{% url 'app_main:service_packages' service.id %}">
+                    <button>Packages</button>
+                </a>
+
+                <a href="{% url 'app_main:service_expertise' service.id %}">
+                    <button>Expertise</button>
+                </a>
+
+                <a href="{% url 'app_main:service_faqs' service.id %}">
+                    <button>FAQs</button>
+                </a>
+                
+                <a href="">
+                    <button>Edit</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+    <p>You have not added any services yet.</p>
+{% endif %}
+
+{% endblock %}

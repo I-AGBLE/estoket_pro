@@ -33,6 +33,7 @@ urlpatterns = [
     path('service/<int:service_id>/packages/', service_packages, name='service_packages'),
     path('service/<int:service_id>/expertise/', service_expertise, name='service_expertise'), 
     path('service/<int:service_id>/faqs/', service_faqs, name='service_faqs'),
+    path('manage_services/', views.manage_services, name='manage_services')
 
 
     

@@ -19,7 +19,7 @@ def service_expertise(request, service_id):
             expertise.save()
             messages.success(request, f"{expertise.expertise_title} added!")
 
-            # 👇 Check which button was clicked
+            # Check which button was clicked
             if request.POST.get('action') == 'next':
                 # Redirect to the FAQs page for this service
                 return redirect('app_main:service_faqs', service_id=service.id)
