@@ -1,0 +1,23 @@
+.service-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Skeleton Loader */
+#loader {
+    margin-top: 20px;
+}
+
+.skeleton-card {
+    height: 150px;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #eee, #ddd, #eee);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}

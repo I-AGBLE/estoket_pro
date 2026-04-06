@@ -7,6 +7,7 @@ from .service_packages import *
 from .faqs_view import *
 from .manage_services import *
 from .edit_services import *
+from .all_services import *
 
 
 

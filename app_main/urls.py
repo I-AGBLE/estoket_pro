@@ -11,6 +11,7 @@ from .views.service_packages import delete_service_package, service_packages
 from .views.expertise_view import service_expertise, delete_service_expertise
 from .views.faqs_view import service_faqs, delete_service_faq
 from .views.edit_services import edit_service
+from .views.all_services import all_services
 
 
 
@@ -40,6 +41,8 @@ urlpatterns = [
 
     path('service/<int:service_id>/packages/', service_packages, name='service_packages'),
     path('package/<int:package_id>/delete/', delete_service_package, name='delete_service_package'),
+    
+    path('services/', all_services, name='all_services'),
     
     # urls.py
     path('service/<int:service_id>/expertise/', service_expertise, name='service_expertise'),

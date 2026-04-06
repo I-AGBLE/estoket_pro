@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>All Services</h2>
+
+<div id="services-container">
+    {% for service in services %}
+        <div class="service-card">
+            <h3>{{ service.service_title }}</h3>
+
+            {% if service.service_image %}
+                <img src="{{ service.service_image.url }}" loading="lazy">
+            {% endif %}
+
+            <p><strong>Category:</strong> {{ service.category }}</p>
+            <p>{{ service.service_description|truncatewords:20|safe }}</p>
+            <p><strong>By:</strong> {{ service.user.first_name }} {{ service.user.last_name }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Skeleton Loader -->
+<div id="loader" style="display:none;">
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+</div>
+
+{% endblock %}
