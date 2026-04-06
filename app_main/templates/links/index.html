@@ -1,38 +1,42 @@
-{% extends "layout.html" %} {% block content %}
-<h2>Welcome to the company links</h2>
-
-<!-- Add Link Form -->
-<form method="POST">
-  {% csrf_token %} 
-  
-  
-  {{ links_form.as_p }}
-  <button type="submit">Add</button>
-
-
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit" name="complete_profile" formnovalidate>
-        Complete Profile
-    </button>
-</form>
-
-</form>
-
-<!-- Existing Links -->
 <div class="card mt-3">
   <p>Your Links</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    {% if editing %}
+      <input type="hidden" name="link_id" value="{{ editing }}">
+    {% endif %}
+
+    {{ links_form.as_p }}
+
+    <button type="submit" name="action" value="add">
+      {% if editing %}Update Link{% else %}Add Link{% endif %}
+    </button>
+
+    <button type="submit" name="complete_profile">
+      Complete Profile
+    </button>
+  </form>
+
   {% if links %}
-  <ul class="list-group">
-    {% for link in links %}
-    <li>
-      {{ link.platform|capfirst }}:
-      <a href="{{ link.address }}" target="_blank">{{ link.address }}</a>
-    </li>
-    {% endfor %}
-  </ul>
+    <ul class="list-group mt-3">
+      {% for link in links %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ link.platform|capfirst }}:
+          <a href="{{ link.address }}" target="_blank">{{ link.address }}</a>
+
+          <span>
+            <a href="?edit={{ link.id }}" class="btn btn-sm btn-primary">Edit</a>
+            <a href="{% url 'app_main:delete_link' link.id %}" 
+               class="btn btn-sm btn-danger"
+               onclick="return confirm('Are you sure you want to delete this link?');">
+               Delete
+            </a>
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
   {% else %}
-  <p>No links added yet.</p>
+    <p>No links added yet.</p>
   {% endif %}
 </div>
-{% endblock %}

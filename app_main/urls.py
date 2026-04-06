@@ -5,7 +5,7 @@ from app_main import views
 # Views Import From Views Folder
 from .views.company_views import company_index, company_dashboard, custom_website
 from .views.freelancer_views import freelancer_index, freelancer_dashboard
-from .views.links_view import links_index
+from .views.links_view import links_index, delete_link
 from .views.service_views import service_index, service_detail
 from .views.service_packages import delete_service_package, service_packages
 from .views.expertise_view import service_expertise, delete_service_expertise
@@ -23,6 +23,7 @@ urlpatterns = [
     
     #Links URLs
     path("links/", links_index, name="links_index"),
+    path('links/<int:link_id>/delete/', delete_link, name='delete_link'),
     
     # Company URLs
     path("company/", company_index, name="company_index"),

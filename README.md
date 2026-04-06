@@ -17,10 +17,12 @@ james@1234
 
 
 *** manage services: for all services with user_id fk ***
-edit services:
-edit expertise 
-edit faq
-edit package
+*** edit services: ***
+*** edit expertise  ***
+*** edit faq ***
+*** edit package ***
+
+display all services: let load be in batches
 edit links: for profile signup 
 
 
